@@ -172,7 +172,7 @@ deps = {
       }
     ],
     'dep_type': 'cipd',
-    'condition': 'host_os == "linux" and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64"',
+    'condition': 'host_os == "linux" and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64" and host_cpu != "loong64"',
   },
   'buildtools/mac': {
     'packages': [
@@ -202,7 +202,7 @@ deps = {
       }
     ],
     'dep_type': 'cipd',
-    'condition': '(host_os == "linux" or host_os == "mac" or host_os == "win") and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64" and (host_cpu != "arm64" or host_os == "mac")',
+    'condition': '(host_os == "linux" or host_os == "mac" or host_os == "win") and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64" and (host_cpu != "arm64" or host_os == "mac") and host_cpu != "loong64"',
   },
   # TODO(498118202): Use checkout_benchmarks here too.
   'test/benchmarks/data':
@@ -363,7 +363,7 @@ deps = {
         'sha256sum': 'ab8ec1e75c7f74565e9f893212262780abc9174363ce5f1ff670c415e9cd4147',
         'size_bytes': 57258740,
         'generation': 1791353523054521,
-        'condition': 'host_os == "linux"',
+        'condition': 'host_os == "linux" and host_cpu == "x64"',
       },
       {
         'object_name': 'Linux_x64/clang-tidy-llvmorg-24-init-7747-g62397f8b-67.tar.xz',
@@ -391,7 +391,7 @@ deps = {
         'sha256sum': 'c575a16aa6516a47ad58c6f66ea604d3ec183d9b7a6ca72139b10d01a3ade984',
         'size_bytes': 5924452,
         'generation': 1791353523760046,
-        'condition': '(checkout_linux or checkout_mac or checkout_android) and host_os == "linux"',
+        'condition': '(checkout_linux or checkout_mac or checkout_android) and host_os == "linux" and host_cpu == "x64"',
       },
       {
         'object_name': 'Mac/clang-llvmorg-24-init-7747-g62397f8b-67.tar.xz',
@@ -526,7 +526,7 @@ deps = {
       }
     ],
     'dep_type': 'cipd',
-    'condition': 'host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64"'
+    'condition': 'host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64" and host_cpu != "loong64"'
   },
   'third_party/partition_alloc': {
     'url': Var('chromium_url') + '/chromium/src/base/allocator/partition_allocator.git@' + Var('partition_alloc_version'),
@@ -557,7 +557,7 @@ deps = {
         'sha256sum': '6287ecced3bc5113122a88dbe15c910edec0828718423a67529c24de0f060e98',
         'size_bytes': 287212360,
         'generation': 1791299089231058,
-        'condition': 'host_os == "linux"',
+        'condition': 'host_os == "linux" and host_cpu == "x64"',
       },
       {
         'object_name': 'Mac/rust-toolchain-1edd55dcfcd573872c727fa3e086369a71661ee0-1125-llvmorg-24-init-7747-g62397f8b.tar.xz',
@@ -600,7 +600,7 @@ deps = {
         'sha256sum': '1472e8a5cfc4959f94ff18aa5ec864b07991d877995a563eeb4176e344a7fa59',
         'size_bytes': 22761568,
         'generation': 1791299091145399,
-        'condition': 'host_os == "linux"',
+        'condition': 'host_os == "linux" and host_cpu == "x64"',
       },
       {
         'object_name': 'Mac/rust-libclang-1edd55dcfcd573872c727fa3e086369a71661ee0-1125-llvmorg-24-init-7747-g62397f8b.tar.xz',
@@ -643,7 +643,7 @@ deps = {
         'version': Var('cpython3_version'),
       }
     ],
-    'condition': 'not build_with_chromium and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64"',
+    'condition': 'not build_with_chromium and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64" and host_cpu != "loong64"',
     'dep_type': 'cipd',
   },
   # Host platform package.
@@ -654,7 +654,7 @@ deps = {
         'version': Var('cpython3_version'),
       }
     ],
-    'condition': 'not build_with_chromium and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64"',
+    'condition': 'not build_with_chromium and host_cpu != "s390x" and host_os != "zos" and host_cpu != "ppc64" and host_cpu != "loong64"',
     'dep_type': 'cipd',
   },
   'third_party/zlib':

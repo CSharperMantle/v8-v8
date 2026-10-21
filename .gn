@@ -9,7 +9,7 @@ buildconfig = "//build/config/BUILDCONFIG.gn"
 
 # The hermetic Python interpreter to use by default. Platforms without a
 # hermetic CPython CIPD package fallback to the system python3 on $PATH.
-if (host_cpu == "s390x" || host_cpu == "ppc64" || host_os == "zos") {
+if (host_cpu == "s390x" || host_cpu == "ppc64" || host_os == "zos" || host_cpu == "loong64") {
   script_executable = "python3"
 } else {
   script_executable = "//third_party/cpython3/host/bin/python3"
