@@ -790,7 +790,7 @@ void MacroAssembler::MoveObjectAndSlot(Register dst_object, Register dst_slot,
   // overwrite it.
   if (dst_slot != object) {
     Add_d(dst_slot, object, offset);
-    mov(dst_object, object);
+    Move(dst_object, object);
     return;
   }
 
@@ -925,10 +925,18 @@ void MacroAssembler::Add_w(Register rd, Register rj, const Operand& rk) {
 
 void MacroAssembler::Add_d(Register rd, Register rj, const Operand& rk) {
   if (rk.is_reg()) {
-    add_d(rd, rj, rk.rm());
+    if (rk.rm() == zero_reg) {
+      Move(rd, rj);
+    } else {
+      add_d(rd, rj, rk.rm());
+    }
   } else {
     if (is_int12(rk.immediate()) && !MustUseReg(rk.rmode())) {
-      addi_d(rd, rj, static_cast<int32_t>(rk.immediate()));
+      if (rk.immediate() == 0) {
+        Move(rd, rj);
+      } else {
+        addi_d(rd, rj, static_cast<int32_t>(rk.immediate()));
+      }
     } else {
       // li handles the relocation.
       UseScratchRegisterScope temps(this);
