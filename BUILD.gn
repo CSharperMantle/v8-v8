@@ -1998,6 +1998,8 @@ config("toolchain") {
     # on non-standard-layout types is implementation defined (rather than UB),
     # and our supported compilers have the expected reasonable behaviour.
     "-Wno-invalid-offsetof",
+
+    "-Wno-unknown-warning-option",
   ]
 
   if (!is_clang) {
@@ -2023,11 +2025,6 @@ config("toolchain") {
       # Fix build with older versions of GCC
       # Ported from v8 bazel: https://crrev.com/c/3368869
       "-Wno-stringop-overflow",
-
-      # Fix a number of bogus errors with gcc12
-      # TODO(miladfarca): re-evaluate for future gcc upgrades
-      # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111499
-      "-Wno-stringop-overread",
 
       # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=104336
       "-Wno-restrict",
