@@ -1486,7 +1486,7 @@ void MacroAssembler::Ld_b(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_b(rd, source.base(), source.index());
+    ldx_b(rd, source.index(), source.base());
   } else {
     ld_b(rd, source.base(), source.offset());
   }
@@ -1497,7 +1497,7 @@ void MacroAssembler::Ld_bu(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_bu(rd, source.base(), source.index());
+    ldx_bu(rd, source.index(), source.base());
   } else {
     ld_bu(rd, source.base(), source.offset());
   }
@@ -1508,7 +1508,7 @@ void MacroAssembler::St_b(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_b(rd, source.base(), source.index());
+    stx_b(rd, source.index(), source.base());
   } else {
     st_b(rd, source.base(), source.offset());
   }
@@ -1519,7 +1519,7 @@ void MacroAssembler::Ld_h(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_h(rd, source.base(), source.index());
+    ldx_h(rd, source.index(), source.base());
   } else {
     ld_h(rd, source.base(), source.offset());
   }
@@ -1530,7 +1530,7 @@ void MacroAssembler::Ld_hu(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_hu(rd, source.base(), source.index());
+    ldx_hu(rd, source.index(), source.base());
   } else {
     ld_hu(rd, source.base(), source.offset());
   }
@@ -1541,7 +1541,7 @@ void MacroAssembler::St_h(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_h(rd, source.base(), source.index());
+    stx_h(rd, source.index(), source.base());
   } else {
     st_h(rd, source.base(), source.offset());
   }
@@ -1560,7 +1560,7 @@ void MacroAssembler::Ld_w(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_w(rd, source.base(), source.index());
+    ldx_w(rd, source.index(), source.base());
   } else {
     ld_w(rd, source.base(), source.offset());
   }
@@ -1572,7 +1572,7 @@ void MacroAssembler::Ld_wu(Register rd, const MemOperand& rj, int* trap_pc) {
 
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_wu(rd, source.base(), source.index());
+    ldx_wu(rd, source.index(), source.base());
   } else {
     ld_wu(rd, source.base(), source.offset());
   }
@@ -1591,7 +1591,7 @@ void MacroAssembler::St_w(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_w(rd, source.base(), source.index());
+    stx_w(rd, source.index(), source.base());
   } else {
     st_w(rd, source.base(), source.offset());
   }
@@ -1610,7 +1610,7 @@ void MacroAssembler::Ld_d(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_d(rd, source.base(), source.index());
+    ldx_d(rd, source.index(), source.base());
   } else {
     ld_d(rd, source.base(), source.offset());
   }
@@ -1629,7 +1629,7 @@ void MacroAssembler::St_d(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_d(rd, source.base(), source.index());
+    stx_d(rd, source.index(), source.base());
   } else {
     st_d(rd, source.base(), source.offset());
   }
@@ -1641,7 +1641,7 @@ void MacroAssembler::Fld_s(FPURegister fd, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fldx_s(fd, tmp.base(), tmp.index());
+    fldx_s(fd, tmp.index(), tmp.base());
   } else {
     fld_s(fd, tmp.base(), tmp.offset());
   }
@@ -1653,7 +1653,7 @@ void MacroAssembler::Fst_s(FPURegister fs, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fstx_s(fs, tmp.base(), tmp.index());
+    fstx_s(fs, tmp.index(), tmp.base());
   } else {
     fst_s(fs, tmp.base(), tmp.offset());
   }
@@ -1665,7 +1665,7 @@ void MacroAssembler::Fld_d(FPURegister fd, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fldx_d(fd, tmp.base(), tmp.index());
+    fldx_d(fd, tmp.index(), tmp.base());
   } else {
     fld_d(fd, tmp.base(), tmp.offset());
   }
@@ -1677,7 +1677,7 @@ void MacroAssembler::Fst_d(FPURegister fs, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fstx_d(fs, tmp.base(), tmp.index());
+    fstx_d(fs, tmp.index(), tmp.base());
   } else {
     fst_d(fs, tmp.base(), tmp.offset());
   }
@@ -1752,7 +1752,7 @@ void MacroAssembler::Vst(VRegister vd, const MemOperand& vj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    vstx(vd, source.base(), source.index());
+    vstx(vd, source.index(), source.base());
   } else {
     vst(vd, source.base(), source.offset());
   }
@@ -1763,7 +1763,7 @@ void MacroAssembler::Vld(VRegister vd, const MemOperand& vj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    vldx(vd, source.base(), source.index());
+    vldx(vd, source.index(), source.base());
   } else {
     vld(vd, source.base(), source.offset());
   }
@@ -1773,27 +1773,172 @@ void MacroAssembler::Vmove(VRegister dst, VRegister src) {
   if (dst != src) vaddi_bu(dst, src, 0);
 }
 
+void MacroAssembler::AdjustBaseAndOffsetVldrepl(
+    MemOperand* src, LSXSize sz, UseScratchRegisterScope& temps) {
+  bool fit = false;
+  if (!src->hasIndexReg()) {
+    int32_t offset = src->offset();
+    switch (sz) {
+      case LSX_B:
+        fit = is_int12(offset);
+        break;
+      case LSX_H:
+        fit = offset % 2 == 0 && is_int11(offset / 2);
+        break;
+      case LSX_W:
+        fit = offset % 4 == 0 && is_int10(offset / 4);
+        break;
+      case LSX_D:
+        fit = offset % 8 == 0 && is_int9(offset / 8);
+        break;
+      default:
+        UNREACHABLE();
+    }
+  }
+  if (fit) return;
+
+  Register scratch = temps.Acquire();
+  if (src->hasIndexReg()) {
+    Add_d(scratch, src->base(), src->index());
+    if (src->offset() != 0) {
+      Add_d(scratch, scratch, Operand(src->offset()));
+    }
+  } else {
+    Add_d(scratch, src->base(), Operand(src->offset()));
+  }
+  *src = MemOperand(scratch, 0);
+}
+
+void MacroAssembler::Vldrepl_b(VRegister vd, const MemOperand& src,
+                               int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = src;
+  AdjustBaseAndOffsetVldrepl(&source, LSX_B, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vldrepl_b(vd, source.base(), source.offset());
+}
+
+void MacroAssembler::Vldrepl_h(VRegister vd, const MemOperand& src,
+                               int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = src;
+  AdjustBaseAndOffsetVldrepl(&source, LSX_H, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vldrepl_h(vd, source.base(), source.offset());
+}
+
+void MacroAssembler::Vldrepl_w(VRegister vd, const MemOperand& src,
+                               int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = src;
+  AdjustBaseAndOffsetVldrepl(&source, LSX_W, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vldrepl_w(vd, source.base(), source.offset());
+}
+
+void MacroAssembler::Vldrepl_d(VRegister vd, const MemOperand& src,
+                               int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = src;
+  AdjustBaseAndOffsetVldrepl(&source, LSX_D, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vldrepl_d(vd, source.base(), source.offset());
+}
+
+void MacroAssembler::AdjustBaseAndOffsetVstelm(MemOperand* dst, LSXSize sz,
+                                               UseScratchRegisterScope& temps) {
+  bool fit = false;
+  if (!dst->hasIndexReg()) {
+    int32_t offset = dst->offset();
+    switch (sz) {
+      case LSX_B:
+        fit = is_int8(offset);
+        break;
+      case LSX_H:
+        fit = offset % 2 == 0 && is_int8(offset / 2);
+        break;
+      case LSX_W:
+        fit = offset % 4 == 0 && is_int8(offset / 4);
+        break;
+      case LSX_D:
+        fit = offset % 8 == 0 && is_int8(offset / 8);
+        break;
+      default:
+        UNREACHABLE();
+    }
+  }
+  if (fit) return;
+
+  Register scratch = temps.Acquire();
+  if (dst->hasIndexReg()) {
+    Add_d(scratch, dst->base(), dst->index());
+    if (dst->offset() != 0) {
+      Add_d(scratch, scratch, Operand(dst->offset()));
+    }
+  } else {
+    Add_d(scratch, dst->base(), Operand(dst->offset()));
+  }
+  *dst = MemOperand(scratch, 0);
+}
+
+void MacroAssembler::Vstelm_b(VRegister vd, const MemOperand& dst,
+                              uint8_t laneidx, int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = dst;
+  AdjustBaseAndOffsetVstelm(&source, LSX_B, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vstelm_b(vd, source.base(), source.offset(), laneidx);
+}
+
+void MacroAssembler::Vstelm_h(VRegister vd, const MemOperand& dst,
+                              uint8_t laneidx, int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = dst;
+  AdjustBaseAndOffsetVstelm(&source, LSX_H, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vstelm_h(vd, source.base(), source.offset(), laneidx);
+}
+
+void MacroAssembler::Vstelm_w(VRegister vd, const MemOperand& dst,
+                              uint8_t laneidx, int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = dst;
+  AdjustBaseAndOffsetVstelm(&source, LSX_W, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vstelm_w(vd, source.base(), source.offset(), laneidx);
+}
+
+void MacroAssembler::Vstelm_d(VRegister vd, const MemOperand& dst,
+                              uint8_t laneidx, int* trap_pc) {
+  UseScratchRegisterScope temps(this);
+  BlockTrampolinePoolScope block_trampoline_pool(this);
+  MemOperand source = dst;
+  AdjustBaseAndOffsetVstelm(&source, LSX_D, temps);
+  if (trap_pc != NULL) *trap_pc = pc_offset();
+  vstelm_d(vd, source.base(), source.offset(), laneidx);
+}
+
 void MacroAssembler::LoadSplat(LSXSize sz, VRegister dst, MemOperand src,
                                int* trap_pc) {
-  BlockTrampolinePoolScope block_trampoline_pool(this);
-  UseScratchRegisterScope temps(this);
-  Register scratch = temps.Acquire();
   switch (sz) {
     case LSX_B:
-      Ld_b(scratch, src, trap_pc);
-      vreplgr2vr_b(dst, scratch);
+      Vldrepl_b(dst, src, trap_pc);
       break;
     case LSX_H:
-      Ld_h(scratch, src, trap_pc);
-      vreplgr2vr_h(dst, scratch);
+      Vldrepl_h(dst, src, trap_pc);
       break;
     case LSX_W:
-      Ld_w(scratch, src, trap_pc);
-      vreplgr2vr_w(dst, scratch);
+      Vldrepl_w(dst, src, trap_pc);
       break;
     case LSX_D:
-      Ld_d(scratch, src, trap_pc);
-      vreplgr2vr_d(dst, scratch);
+      Vldrepl_d(dst, src, trap_pc);
       break;
     default:
       UNREACHABLE();
@@ -2680,34 +2825,18 @@ void MacroAssembler::LoadLane(LSXSize sz, VRegister dst, uint8_t laneidx,
 
 void MacroAssembler::StoreLane(LSXSize sz, VRegister src, uint8_t laneidx,
                                MemOperand dst, int* trap_pc) {
-  UseScratchRegisterScope temps(this);
-  Register scratch = temps.Acquire();
   switch (sz) {
     case LSX_B:
-      vpickve2gr_bu(scratch, src, laneidx);
-      St_b(scratch, dst, trap_pc);
+      Vstelm_b(src, dst, laneidx, trap_pc);
       break;
     case LSX_H:
-      vpickve2gr_hu(scratch, src, laneidx);
-      St_h(scratch, dst, trap_pc);
+      Vstelm_h(src, dst, laneidx, trap_pc);
       break;
     case LSX_W:
-      if (laneidx == 0) {
-        FPURegister src_reg = FPURegister::from_code(src.code());
-        Fst_s(src_reg, dst, trap_pc);
-      } else {
-        vpickve2gr_wu(scratch, src, laneidx);
-        St_w(scratch, dst, trap_pc);
-      }
+      Vstelm_w(src, dst, laneidx, trap_pc);
       break;
     case LSX_D:
-      if (laneidx == 0) {
-        FPURegister src_reg = FPURegister::from_code(src.code());
-        Fst_d(src_reg, dst, trap_pc);
-      } else {
-        vpickve2gr_d(scratch, src, laneidx);
-        St_d(scratch, dst, trap_pc);
-      }
+      Vstelm_d(src, dst, laneidx, trap_pc);
       break;
     default:
       UNREACHABLE();

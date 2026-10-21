@@ -2468,20 +2468,19 @@ void LiftoffAssembler::LoadTransform(LiftoffRegister dst, Register src_addr,
   MachineType memtype = type.mem_type();
 
   if (transform == LoadTransformationKind::kExtend) {
-    Ld_d(scratch, src_op, reinterpret_cast<int*>(trapping_load_pc));
-    vreplgr2vr_d(kSimd128ScratchReg, scratch);
+    Fld_d(dst.fp(), src_op, reinterpret_cast<int*>(trapping_load_pc));
     if (memtype == MachineType::Int8()) {
-      vexth_h_b(dstReg, kSimd128ScratchReg);
+      vsllwil_h_b(dstReg, dstReg, 0);
     } else if (memtype == MachineType::Uint8()) {
-      vexth_hu_bu(dstReg, kSimd128ScratchReg);
+      vsllwil_hu_bu(dstReg, dstReg, 0);
     } else if (memtype == MachineType::Int16()) {
-      vexth_w_h(dstReg, kSimd128ScratchReg);
+      vsllwil_w_h(dstReg, dstReg, 0);
     } else if (memtype == MachineType::Uint16()) {
-      vexth_wu_hu(dstReg, kSimd128ScratchReg);
+      vsllwil_wu_hu(dstReg, dstReg, 0);
     } else if (memtype == MachineType::Int32()) {
-      vexth_d_w(dstReg, kSimd128ScratchReg);
+      vsllwil_d_w(dstReg, dstReg, 0);
     } else if (memtype == MachineType::Uint32()) {
-      vexth_du_wu(dstReg, kSimd128ScratchReg);
+      vsllwil_du_wu(dstReg, dstReg, 0);
     }
   } else if (transform == LoadTransformationKind::kZeroExtend) {
     vxor_v(dstReg, dstReg, dstReg);
@@ -2495,19 +2494,9 @@ void LiftoffAssembler::LoadTransform(LiftoffRegister dst, Register src_addr,
     }
   } else {
     DCHECK_EQ(LoadTransformationKind::kSplat, transform);
-    if (memtype == MachineType::Int8()) {
-      Ld_b(scratch, src_op, reinterpret_cast<int*>(trapping_load_pc));
-      vreplgr2vr_b(dstReg, scratch);
-    } else if (memtype == MachineType::Int16()) {
-      Ld_h(scratch, src_op, reinterpret_cast<int*>(trapping_load_pc));
-      vreplgr2vr_h(dstReg, scratch);
-    } else if (memtype == MachineType::Int32()) {
-      Ld_w(scratch, src_op, reinterpret_cast<int*>(trapping_load_pc));
-      vreplgr2vr_w(dstReg, scratch);
-    } else if (memtype == MachineType::Int64()) {
-      Ld_d(scratch, src_op, reinterpret_cast<int*>(trapping_load_pc));
-      vreplgr2vr_d(dstReg, scratch);
-    }
+    MacroAssembler::LoadSplat(
+        LoadStoreLaneParams(memtype.representation(), 0).sz, dstReg, src_op,
+        reinterpret_cast<int*>(trapping_load_pc));
   }
 }
 
