@@ -1998,6 +1998,8 @@ config("toolchain") {
     # on non-standard-layout types is implementation defined (rather than UB),
     # and our supported compilers have the expected reasonable behaviour.
     "-Wno-invalid-offsetof",
+
+    "-Wno-unknown-warning-option",
   ]
 
   if (!is_clang) {
