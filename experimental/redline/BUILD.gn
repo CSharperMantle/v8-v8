@@ -22,6 +22,7 @@ config("redline_warnings") {
     "-Wshadow",
     "-Wunused",
     "-Werror",
+    "-Wno-unknown-warning-option",
   ]
   if (is_clang) {
     cflags += [
