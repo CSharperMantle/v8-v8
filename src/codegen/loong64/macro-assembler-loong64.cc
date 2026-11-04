@@ -1486,7 +1486,7 @@ void MacroAssembler::Ld_b(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_b(rd, source.base(), source.index());
+    ldx_b(rd, source.index(), source.base());
   } else {
     ld_b(rd, source.base(), source.offset());
   }
@@ -1497,7 +1497,7 @@ void MacroAssembler::Ld_bu(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_bu(rd, source.base(), source.index());
+    ldx_bu(rd, source.index(), source.base());
   } else {
     ld_bu(rd, source.base(), source.offset());
   }
@@ -1508,7 +1508,7 @@ void MacroAssembler::St_b(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_b(rd, source.base(), source.index());
+    stx_b(rd, source.index(), source.base());
   } else {
     st_b(rd, source.base(), source.offset());
   }
@@ -1519,7 +1519,7 @@ void MacroAssembler::Ld_h(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_h(rd, source.base(), source.index());
+    ldx_h(rd, source.index(), source.base());
   } else {
     ld_h(rd, source.base(), source.offset());
   }
@@ -1530,7 +1530,7 @@ void MacroAssembler::Ld_hu(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_hu(rd, source.base(), source.index());
+    ldx_hu(rd, source.index(), source.base());
   } else {
     ld_hu(rd, source.base(), source.offset());
   }
@@ -1541,7 +1541,7 @@ void MacroAssembler::St_h(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_h(rd, source.base(), source.index());
+    stx_h(rd, source.index(), source.base());
   } else {
     st_h(rd, source.base(), source.offset());
   }
@@ -1560,7 +1560,7 @@ void MacroAssembler::Ld_w(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_w(rd, source.base(), source.index());
+    ldx_w(rd, source.index(), source.base());
   } else {
     ld_w(rd, source.base(), source.offset());
   }
@@ -1572,7 +1572,7 @@ void MacroAssembler::Ld_wu(Register rd, const MemOperand& rj, int* trap_pc) {
 
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_wu(rd, source.base(), source.index());
+    ldx_wu(rd, source.index(), source.base());
   } else {
     ld_wu(rd, source.base(), source.offset());
   }
@@ -1591,7 +1591,7 @@ void MacroAssembler::St_w(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_w(rd, source.base(), source.index());
+    stx_w(rd, source.index(), source.base());
   } else {
     st_w(rd, source.base(), source.offset());
   }
@@ -1610,7 +1610,7 @@ void MacroAssembler::Ld_d(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    ldx_d(rd, source.base(), source.index());
+    ldx_d(rd, source.index(), source.base());
   } else {
     ld_d(rd, source.base(), source.offset());
   }
@@ -1629,7 +1629,7 @@ void MacroAssembler::St_d(Register rd, const MemOperand& rj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    stx_d(rd, source.base(), source.index());
+    stx_d(rd, source.index(), source.base());
   } else {
     st_d(rd, source.base(), source.offset());
   }
@@ -1641,7 +1641,7 @@ void MacroAssembler::Fld_s(FPURegister fd, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fldx_s(fd, tmp.base(), tmp.index());
+    fldx_s(fd, tmp.index(), tmp.base());
   } else {
     fld_s(fd, tmp.base(), tmp.offset());
   }
@@ -1653,7 +1653,7 @@ void MacroAssembler::Fst_s(FPURegister fs, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fstx_s(fs, tmp.base(), tmp.index());
+    fstx_s(fs, tmp.index(), tmp.base());
   } else {
     fst_s(fs, tmp.base(), tmp.offset());
   }
@@ -1665,7 +1665,7 @@ void MacroAssembler::Fld_d(FPURegister fd, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fldx_d(fd, tmp.base(), tmp.index());
+    fldx_d(fd, tmp.index(), tmp.base());
   } else {
     fld_d(fd, tmp.base(), tmp.offset());
   }
@@ -1677,7 +1677,7 @@ void MacroAssembler::Fst_d(FPURegister fs, const MemOperand& src,
   AdjustBaseAndOffset(&tmp);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (tmp.hasIndexReg()) {
-    fstx_d(fs, tmp.base(), tmp.index());
+    fstx_d(fs, tmp.index(), tmp.base());
   } else {
     fst_d(fs, tmp.base(), tmp.offset());
   }
@@ -1752,7 +1752,7 @@ void MacroAssembler::Vst(VRegister vd, const MemOperand& vj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    vstx(vd, source.base(), source.index());
+    vstx(vd, source.index(), source.base());
   } else {
     vst(vd, source.base(), source.offset());
   }
@@ -1763,7 +1763,7 @@ void MacroAssembler::Vld(VRegister vd, const MemOperand& vj, int* trap_pc) {
   AdjustBaseAndOffset(&source);
   if (trap_pc != NULL) *trap_pc = pc_offset();
   if (source.hasIndexReg()) {
-    vldx(vd, source.base(), source.index());
+    vldx(vd, source.index(), source.base());
   } else {
     vld(vd, source.base(), source.offset());
   }
